@@ -13,22 +13,6 @@ La carpeta del proyecto tiene dos partes:
 - **`fuente/`** (privada, no se sube a un repositorio público): `index.html` legible, este README, `LICENSE` y `ofuscar.js`. Aquí se hacen los cambios.
 - **`publicar/`** (lo que se sube al repositorio de GitHub Pages): `index.html` con el JavaScript propio ofuscado y `LICENSE`.
 
-Qué hace la ofuscación (javascript-obfuscator 5.8.1):
-- Interfaz y animación: nombres internos ilegibles, código compactado en una línea y textos codificados en base64.
-- Motor de audio (worker y utilidades compartidas): nombres ilegibles y compactado, sin codificar textos, porque eso volvía la síntesis 1,5 a 2 veces más lenta.
-- Los nombres de las funciones globales se conservan, porque los scripts y el worker los comparten. Las bibliotecas de terceros (mp4-muxer y webm-muxer, MIT) se dejan con su aviso de licencia.
-- Ninguna ofuscación impide leer el código a quien insista: solo lo vuelve muy difícil de entender y modificar. La protección de fondo es el aviso de derechos de autor (comentario al inicio del HTML, pie de la página y `LICENSE`).
-
-Para regenerar la versión publicable después de editar `fuente/index.html`:
-```
-npm install javascript-obfuscator@5.8.1
-node ofuscar.js index.html ../publicar/index.html
-```
-
-## Ejecución
-1. Abre `index.html` con Chrome, Edge o Firefox recientes (doble clic basta). No requiere instalación ni conexión: las bibliotecas de empaquetado de video (mp4-muxer y webm-muxer, licencia MIT) están incrustadas. La conexión solo se usa para cargar la tipografía Saira; sin internet se usa la del sistema.
-2. Si tu navegador bloquea algo al abrir el archivo directamente, sírvelo en local: `python -m http.server` dentro de la carpeta y abre `http://localhost:8000`.
-
 ## Uso
 La interfaz sigue seis pasos numerados. La barra superior muestra en qué paso estás y cuáles ya completaste; la vista previa queda fija a la derecha mientras recorres los pasos.
 
